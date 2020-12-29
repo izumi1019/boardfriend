@@ -1,0 +1,30 @@
+<div class="mypage-header">
+<div class="mypage-link-area">
+<ul>
+    <li><a href="/users/current_user/records">投稿記録</a></li>
+    <li><%= link_to "参加申込記録", participants_path(current_user) %></li>
+    <li><%= link_to "お気に入り", likes_path(current_user) %></li>
+    <li><%= link_to "DM通知",  notifications_index_path(current_user) %></li>
+    <li><%= link_to "ユーザー情報編集",edit_user_registration_path(current_user)%></li>
+    <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li>
+</ul>
+</div>
+</div>
+
+
+
+<div class="card-group">
+    <% @records.order(id: "DESC").each do |r| %>
+    <div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><%= r.title %><br>👍<%= r.participated_users.count %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= r.date %><br>場所：<%= r.location %></h6>
+        <a href="/posts/<%= r.id %>" class="card-link card-link1">詳細</a>
+        <% if user_signed_in? && current_user.id == r.user_id %>
+        <a href="/posts/<%= r.id %>/edit" class="card-link card-link2" style="margin: 20px auto;">編集</a>   
+    <% end %>
+    </div>
+    </div>
+    <% end %>
+</div>
+    

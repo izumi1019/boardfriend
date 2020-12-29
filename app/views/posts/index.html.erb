@@ -1,0 +1,78 @@
+    <div class="searchwithmap">
+    <div class="search">
+    <h3><i class="fas fa-search"></i></h3>
+        <%= search_form_for @search do |f| %>
+    <div class="search-all">
+    <div class="search1">
+    <%= f.label :location_cont, '場所 ' %>
+    <%= f.text_field :location_cont, class:"search-area" %><br>
+    </div>
+    <div class="search2">
+    <%= f.label :date_cont, '日時 ' %>
+    <%= f.date_select :date_gteq, include_blank: true, class:"search-area"  %>〜
+    <%= f.date_select :date_lteq, include_blank: true , class:"search-area" %>
+    </div>
+    </div>
+    <div class="search-button">
+        <%= f.submit '検索する' %>
+    </div>
+    <% end %>
+    </div>
+    
+    <div class="maparea">
+    <div id='map'></div>
+<script>
+let map
+let marker = []; // マーカーを複数表示させたいので、配列化
+function initMap(){
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 35.6585, lng: 139.7486},
+        zoom: 6,
+    });
+    <% @posts.each do |place| %>
+        <% results=Geocoder.search(place.location) %>
+        <% if results.present? %>
+        <% @latlng=results.first.coordinates %>
+    (function(){
+        var contentString = '場所：<%= link_to place.location,post_path(place.id) %>';
+        var infowindow = new google.maps.InfoWindow({
+        position:{lat: <%= @latlng[0] %>, lng: <%= @latlng[1] %>},
+        content: contentString
+        });
+        var marker = new google.maps.Marker({
+            position:{lat: <%= @latlng[0] %>, lng: <%= @latlng[1] %>},
+            map: map,
+            title: contentString
+        });
+        marker.addListener('click', function() {
+        infowindow.open(map, marker);
+        });
+        })();
+        <% end %>
+    <% end %>
+    }
+</script>
+</div>
+</div>   
+
+<div class="line"></div>
+
+</div>
+
+<div class="card-group">
+    <% @posts.order(id: "DESC").each do |t| %> 
+        <div class="card" style="width:300px;height:300px;overflow:auto;">
+                <div class="cardheader">
+                    <i class="fas fa-chess-queen"></i>
+                </div>
+                <div class="card-body"> 
+                    <h5 class="card-title"><%= t.title %><br>👍<%= t.participated_users.count %></h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><%= t.date %><br>場所：<%= t.location %></h6>
+                    <a href="/posts/<%= t.id %>" class="card-link card-link1">詳細</a>
+                    <% if user_signed_in? && current_user.id == t.user_id %>
+                        <a href="/posts/<%= t.id %>/edit" class="card-link card-link2" style="margin: 10px auto 0px auto;">編集</a>
+                    <% end %>
+                </div>
+        </div>
+    <% end %>
+</div>

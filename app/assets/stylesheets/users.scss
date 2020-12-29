@@ -1,0 +1,342 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.card {
+    float: left;
+    widows: 25%;
+    
+}
+
+.mypage-link-area {
+    position: fixed;
+    z-index: 10;                /* 位置(左0px) */
+    width: 100%;                /* 横幅100%　*/
+    height: 40px; 
+    top: 70px; 
+    background-color: #fff; 
+    display: flex;
+    border-width: 1px 0 1px 0;
+    border: double rgba(225, 117, 93, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mypage-link-area ul {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.mypage-link-area a {
+    transition: .3s;
+    display: inline-block;
+    color:rgba(225, 117, 93, 0.9);
+    text-decoration: none;
+    margin: 0 30px;
+
+    }
+
+.mypage-link-area a:hover {
+    transform: rotate(2deg);
+    text-decoration: none;
+    color: rgba(225, 97, 66, 0.973);
+    }
+
+
+.cards-container{
+            min-height: 500px;
+            height: 100%;
+            margin: 2rem auto;
+            width:60%;
+            background: #fff;
+            box-shadow: 3px 13px 15px -5px rgba(#000,.4);
+        }
+            
+div.card-header{
+            position: relative;
+            width: 100%;
+            height: 150px;
+            background-color: #40ba8d;
+            
+        }
+
+.avatar1{
+            position: absolute;
+            left: 10%;
+            top: 30px;
+            margin-left: -50px;
+            z-index: 5;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            background:  #c3d941;
+            border:3px solid #fff;
+        }
+
+.avatar{
+          position: absolute;
+          left: 15%;
+          top: 20px;
+          margin-left: -50px;
+          z-index: 5;
+          width: 170px;
+          height: 170px;
+          border-radius: 50%;
+          overflow: hidden;
+          background:  #c3d941;
+          border:3px solid #fff;
+        
+        }
+
+
+.img{   
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    width:  200px;       /* ※縦横を同値に */
+    height: 200px;   
+    background-position: center center;    
+    }
+
+.profile-img{
+    height: 170px;
+    width: 170px;}
+    
+            
+        
+.name{
+    position: relative;
+    margin: 40px 0 30px;
+    text-align: center;
+}
+
+.desc{
+    
+    text-align: center;
+    
+    color: #777;
+    }
+
+.desc-profile{margin: 0 auto;}
+
+
+    .btn,
+a.btn,
+button.btn {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 0.7;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+// font-weight: 750;
+// font-size: 25px;
+// padding: 10px 40px;
+// border-bottom: ;
+// margin-top: -10px;
+
+a.btn-border-shadow {
+  padding: calc(1.5rem - 12px) 3rem 1.5rem;
+
+  background: #fff;
+}
+
+a.btn-border-shadow:before {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+
+  width: 100%;
+  height: 100%;
+
+  content: "";
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+
+  border: 3px solid #000;
+  border-radius: 0.5rem;
+}
+
+a.btn-border-shadow:hover {
+  padding: calc(1.5rem - 6px) 3rem;
+}
+
+a.btn-border-shadow:hover:before {
+  top: 0;
+  left: 0;
+}
+
+a.btn-border-shadow--color2 {
+  border-radius: 100vh;
+}
+
+a.btn-border-shadow--color2:before {
+  border-radius: 100vh;
+  -webkit-box-shadow: 4px 4px #40ba8d;
+  box-shadow: 4px 4px 0 #40ba8d;
+}
+
+.dm-btn{
+  font-size:1.4rem;
+    font-weight: 700;
+    line-height: 0.7;
+    padding: 1rem 3rem;
+}
+// top
+div#carouselExampleCaptions {
+  margin-top: -95px;
+}
+img.d-block.w-100 {
+  height: 100vh;
+  margin: auto;
+  width: 100% !important;
+}
+@media screen and (max-width: 768px) {
+  div.d-none,div.d-md-block {
+    display: block !important;
+  }
+}
+
+
+.btn-border-shadow{margin-left: 280px;}   
+
+
+
+.top-login{
+    background: #e1755d;
+    color: #fff;
+    display: block;
+    padding: 4px 0;
+    width: 100px;
+    border-radius: 5px;
+    margin-left: 50px;
+}
+
+.top-login:hover{
+    text-decoration: none;
+    background: #e1753c;
+}
+
+
+.d-md-block {
+    display: block!important;
+    height: 150px;
+}
+
+.d-md-block {
+  display: block!important;
+  height: 400px;
+}
+
+.top-text{
+  background:rgba(0,0,0,0.5)
+}
+
+.btn{
+  margin: 0 40% 0 40%
+}
+
+@media screen and (max-width: 768px) {
+  
+
+
+.avatar{
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 13%;
+}
+
+.profile-img{
+  width: 150px;
+  height: 150px;
+}
+
+.avatar1{
+  display:none;
+}
+.cards-container{
+  width: 80%;
+}
+.fa-question:before {
+  content: "\f128";
+  /* width: 150px; */
+  /* display: flex; */
+  /* margin: auto; */
+  /* margin-left: 35px; */
+  font-size: 2.1em;
+  position: absolute;
+  margin-left: 35px;
+}
+}
+
+
+@media screen and (max-width: 650px) {
+  .btn{
+    margin: 0 0 0 30%;
+  }
+}
+
+
+@media screen and (max-width: 890px) {
+
+  .mypage-link-area {
+    display: none;
+  }
+
+}
+input.btn.btn-border-shadow.btn-border-shadow--color2 {
+  border-radius: 100vh;
+  -webkit-box-shadow: 4px 4px #40ba8d;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #40ba8d;
+}
+
+.card-group2{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.card-group2::after{
+  content:"";
+  display: block;
+  width:300px;
+  margin-left: 2%;
+  margin-bottom: 20px;
+}
+
+.fa-question:before {
+  content: "\f128";
+  /* width: 150px; */
+  /* display: flex; */
+  /* margin: auto; */
+  /* margin-left: 35px; */
+  font-size: 2.5em;
+  position: absolute;
+  margin-left: 35px;
+}
+
+i.fas.fa-question {
+  position: relative;
+}

@@ -1,0 +1,97 @@
+<div class="mypage-header">
+<div class="mypage-link-area">
+<ul>
+    <li><a href="/users/current_user/records">投稿記録</a></li>
+    <li><%= link_to "参加申込記録", participants_path(current_user) %></li>
+    <li><%= link_to "お気に入り", likes_path(current_user) %></li>
+    <li><%= link_to "DM通知",  notifications_index_path(current_user) %></li>
+    <li><%= link_to "ユーザー情報編集",edit_user_registration_path(current_user)%></li>
+    <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li>
+</ul>
+</div>
+</div>
+
+
+
+<div class="grid">
+<div id="login">
+
+      <h2><span class="fontawesome-lock"></span>Edit <%= resource_name.to_s.humanize %></h2>
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+<fieldset>
+  <div class="field">
+  <%= f.label :image %><br />
+  <%= f.file_field :image %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :name%><br />
+    <%= f.text_field :name, autofocus: true, class:"field-set" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.number_field :age, class:"field-set" %>
+  </div>
+  
+  <div class="field">
+  <%= f.label :gender %><br />
+  <%= f.text_field :gender, class:"field-set" %>
+  </div>
+
+  <div class="field">
+  <%= f.label :address %><br />
+  <%= f.text_field :address, class:"field-set" %>
+  </div>
+
+  <div class="field">
+  <%= f.label :profile %><br />
+  <%= f.text_area :profile, size:"70×100", class:"field-set" %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+    
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Yes", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"cancel"  %></p>
+</fieldset>
+
+</div>
+</div>

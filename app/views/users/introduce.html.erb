@@ -1,0 +1,61 @@
+<% if current_user %>
+
+<div class="mypage-header">
+<div class="mypage-link-area">
+<ul>
+    <li><a href="/users/current_user/records">投稿記録</a></li>
+    <li><%= link_to "参加申込記録", participants_path(current_user) %></li>
+    <li><%= link_to "お気に入り", likes_path(current_user) %></li>
+    <li><%= link_to "DM通知",  notifications_index_path(current_user) %></li>
+    <li><%= link_to "ユーザー情報編集",edit_user_registration_path(current_user)%></li>
+    <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li>
+</ul>
+</div>
+</div>
+
+<div class="cards-container">
+    <div class="card-header">
+    <div class="avatar">
+    <% if @user.image_url == nil %>
+        <i class="fas fa-question"></i>
+    <% else %>
+        <%= image_tag @user.image_url,class: "profile-img" %>
+    <% end %>
+    </div>
+    </div>
+    
+    <div class="name">
+    <h3><%= @user.name %></h3>
+    </div>
+
+<div class="desc">
+    
+    <p class="desc-profile">年齢：<%= @user.age %></p>
+
+    <P class="desc-profile">性別：<%= @user.gender %></P>
+
+    <P class="desc-profile">居住地：<%=@user.address %></P><br>
+    
+    <p class="desc-profile"><%= simple_format(@user.profile) %></p><br>
+
+    
+
+</div>
+    <% if @user.id == current_user.id %>
+
+    <% else %>
+    <% if @isRoom == true %>
+        <p><a href="/rooms/<%= @roomId %>">DM</a>
+    <% else %>
+        <%= form_for @room do |f| %>
+        <%= fields_for @entry do |e| %>
+            <%= e.hidden_field :user_id, :value=> @user.id %>
+        <% end %>
+        <%= f.submit "チャットを始める" %>
+        <% end %>
+    <% end %>
+    <% end %>
+<% else %>
+ログインしてくださあい！
+<%= link_to "ログイン",new_user_session_path %>
+<% end %>

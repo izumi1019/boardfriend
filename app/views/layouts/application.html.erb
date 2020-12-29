@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Boardfriend</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/1f9bc877d9.js" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <header>
+      <div class="header-area">
+        <div class="logo-area">
+          <%= link_to root_path do %>
+            <%=image_tag'logo.png',class:"logo_img" %>
+            <% end %>
+        </div>
+        <div class="link-area">
+          <input id="menu-cb" type="checkbox" value="off">
+          <label id="menu-icon" for="menu-cb"></label>
+          <div id="ham-menu">
+            <ul class="header-items-sp">
+              <% if user_signed_in? %>
+                <li class="header-item-sp"><a class="header-item-s"  href="/posts/new"><span>投稿フォーム</span></a></li>
+                <li class="header-item-sp"><a class="header-item-s" href="/posts"><span>投稿一覧</span></a></li>
+                <li class="header-item-sp"><a class="header-item-s" href="/users/current_user/introduce"><span>マイページ</span></a></li>
+                <li class="header-item-sp"><a class="header-item-s" href="/users/<%= current_user.id %>/records"><span>投稿記録</span></a></li>
+                <li class="header-item-sp"><a class="header-item-s"  href="/users/<%= current_user.id %>/participants"><span>参加申込記録</span></a></li>
+                <li class="header-item-sp"><a class="header-item-s"  href="/users/<%= current_user.id %>/likes"><span>お気に入り</span></a></li>
+                <li class="header-item-sp"><a class="header-item-s"  href="/notifications/index/"><span>DM通知</span></a></li>
+                <li class="header-item-sp"><a class="header-item-s"  href="/users/edit"><span>ユーザー情報編集</span></a></li>
+                <li class="header-item-sp"><a class="header-item-s"  href="/users/sign_out"><span>ログアウト</span></a></li>
+              <% else %>
+                <li class="header-item-sp"><a class="header-item-s" href="/users/sign_in">ログイン</a></li>
+              <% end %>
+            </ul>
+          </div>
+          <ul class="pc-header">
+          <% if user_signed_in? %>
+            <li><a class="link-to-post-new link" href="/posts/new">投稿フォーム</a></li>
+            <li><a class="link-to-post-index link" href="/posts">投稿一覧</a></li>
+            <li><a class="link-to-mypage link" href="/users/current_user/introduce">マイページ</a></li>
+            <% else %>
+              <li><a class="link-to-mypage link" href="/users/sign_in">ログイン</a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main>
+      <%= yield %>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCE8VecYsjed6-WFATp9GTPxkvxs1tL4X8&callback=initMap" async defer></script>
+    </main>
+  </body>
+</html>

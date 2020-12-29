@@ -1,0 +1,44 @@
+
+<div class="cards-container">
+    <div class="card-header">
+    <div class="avatar">
+    <% if @user.image_url == nil %>
+      <i class="fas fa-question"></i>
+    <% else %>
+        <%= image_tag @user.image_url,class: "profile-img" %>
+    <% end %>
+    </div>
+    </div>
+    
+    <div class="name">
+    <h3><%= @user.name %></h3>
+    </div>
+
+<div class="desc">
+    
+    <p class="desc-profile">年齢：<%= @user.age %></p>
+
+    <P class="desc-profile">性別：<%= @user.gender %></P>
+
+    <P class="desc-profile">居住地：<%=@user.address %></P><br>
+    
+    <p class="desc-profile"><%= simple_format(@user.profile) %></p><br>
+
+</div>
+
+<% if @user.id == current_user.id %>
+<% else %>
+  <% if @isRoom == true %>
+      <p><a class="btn btn-border-shadow btn-border-shadow--color2" href="/rooms/<%= @roomId %>">DM</a></p>
+  <% else %>
+      <%= form_for @room do |f| %>
+        <%= fields_for @entry do |e| %>
+          <%= e.hidden_field :user_id, :value=> @user.id %>
+        <% end %>
+        <p><%= f.submit "チャットを始める",class: "btn btn-border-shadow btn-border-shadow--color2 dm-btn" %></p>
+    <% end %>
+  <% end %> 
+<% end %>
+
+
+

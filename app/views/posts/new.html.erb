@@ -1,0 +1,46 @@
+
+
+<div class="post-container">
+    <h5 class="title"><i class="fas fa-comment-dots"></i>  <i class="far fa-envelope"></i>  <i class="fas fa-comment-dots"></i></h5>
+    <%= form_for(@post, :url => { controller:'posts', action:'create'})do |f| %>
+    <div class="postform">
+        <%= f.label :タイトル %>
+        
+        <%= f.text_field :title,size: 75, class:"form" %>
+    </div>
+
+    <div class="a1">
+    <div class="postform">
+        <%= f.label :募集人数 %><br>
+        <%= f.number_field :capacity,size: 5, class:"form a2" %>
+    </div>
+    <div class="postform">
+        <%= f.label :開催日時 %><br>
+        <%= f.datetime_field :date,size: 30, class:"form a2" %>
+    </div>
+    </div>
+        
+    <div class="postform">
+        <%= f.label :開催場所 %><br>
+        <%= f.text_field :location,size: 40, class:"form" %>
+    </div>
+        
+    <div class="postform"><br>
+        <%= f.label :募集対象 %><br>
+        <%= f.text_field :remarks,size: 40, class:"form" %>
+    </div>
+        
+    <div class="postform">
+        <%= f.label :詳細説明 %>
+        <br>   
+        <%= f.text_area :explanation, size: "70×100", class:"form" %>
+    </div>
+        <br>
+        <div class="submit-button">
+        <input type="submit" value="投稿" class="button">
+        </div>
+    
+    <% end %>
+</div>
+
+

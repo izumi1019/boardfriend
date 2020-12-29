@@ -1,0 +1,22 @@
+<div class="mypage-header">
+<div class="mypage-link-area">
+<ul>
+    <li><a href="/users/current_user/records">投稿記録</a></li>
+    <li><%= link_to "参加申込記録", participants_path(current_user) %></li>
+    <li><%= link_to "お気に入り", likes_path(current_user) %></li>
+    <li><%= link_to "DM通知",  notifications_index_path(current_user) %></li>
+    <li><%= link_to "ユーザー情報編集",edit_user_registration_path(current_user)%></li>
+    <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li>
+</ul>
+</div>
+</div>
+
+<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+<% if notifications.exists? %>
+    <%= render notifications %>
+<% else %>
+<div class="notification-content notification">
+<p>通知はありません</p>
+</div>
+<% end %>
+

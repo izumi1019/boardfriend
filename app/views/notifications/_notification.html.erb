@@ -1,0 +1,35 @@
+<% if notification.checked == false %>
+    <div class="notification">
+    <% visitor = notification.visitor %>
+    <% visited = notification.visited %>
+    <ul class="listgroup">
+    <li class="listgroup-item">
+    <% @currentUserEntry=Entry.where(user_id: current_user.id) %>
+    <%  @userEntry=Entry.where(user_id: visitor.id) %>
+        <% @currentUserEntry.each do |cu|%>
+            <% @userEntry.each do |u| %>
+            <% if cu.room_id == u.room_id then %>
+                <% @roomId = cu.room_id %>
+            <% end %>
+            <% end %>
+    <% end %>
+
+        <div class="notification-content">
+        <%= notification.created_at.in_time_zone('Tokyo') %>
+        <div class="notification-name">
+        
+        <%= link_to room_path(@roomId),class: "notification-link" do %>
+            <%= visitor.name %>さん
+        <% end %>
+        <% if notification.action=='dm' %>
+        があなたにDMを送りました
+        <% end %>
+        </div>
+
+        <%= button_to '削除',notification_path(notification.id),method: :put,class:"notification-btn" %>
+        </div>
+    </li>
+    
+    </ul>
+    </div>
+<% end %>

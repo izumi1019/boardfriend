@@ -1,0 +1,73 @@
+// Place all the styles related to the notifications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.listgroup{
+    margin-bottom: 10px;
+    border-bottom: 2px solid #40ba8d;
+}
+
+.notification{
+    width: 70%;
+    margin: 40px auto;
+    padding: 1em 2em;
+    box-shadow:0px 0px 3px 2px #ededed;
+    position: relative;
+    text-align: left;
+    color: rgba(49, 47, 47, 0.973);
+}
+
+.visitor-name{
+    color: #40ba8d
+}
+
+.visitor-name:hover{
+    color:#28ad63;
+    text-decoration: none;
+}
+
+.notification-content{
+    display: flex;
+    justify-content: space-around;
+}
+
+.notification-btn{
+    background: #e1755d;
+    color: #fff;
+    display: block;
+    padding: 2px 0;
+    width: 100px;
+    border-radius: 5px;
+    margin-left: 50px;
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+.notification-btn:hover{
+    text-decoration: none;
+    background: #e1753c;
+}
+
+.notification-link:hover{
+    text-decoration: none;
+    color:#28ad63;
+}
+
+.notification-link{
+    color: #40ba8d
+    
+}
+
+@media screen and (max-width: 768px) {
+.notification-name {
+    margin: 20px;
+}
+
+.notification-content{
+    display: block;
+}
+
+.notification-btn{
+    margin: 10px auto
+}
+}

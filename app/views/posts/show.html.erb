@@ -1,0 +1,69 @@
+<div class="post-card">
+<div class="post">
+    <div class="post-header">
+    <div class="avatar1" style="top:0; border:3px solid #40BA8D; position:absolute; left:75%;">
+    <% if @post.user.image_url == nil %>
+        <i class="fas fa-question post-image"></i>
+    <% else %>
+        <%= image_tag @post.user.image_url,class: "profile-img1" %>
+    <% end %>
+    </div>
+        <h3 class="post-header-text"><%= @post.title %></h3>
+        <h4 class="post-header-text-1"><a  class="post-user" href="/users/<%= @post.user.id %>"><%= @post.user.name %>さん</a>の投稿</h4>
+    
+    <div class="post-user-edit">
+        <% if user_signed_in? && current_user.id == @post.user_id %>
+            <%= link_to "編集", edit_post_path(@post.id), class:"edit-button e1", width:"30%" %>
+            <%= button_to "削除", post_path(@post.id), method: :delete, class:"edit-button e2", width:"30%",onclick: "btnalert()" %>
+        <% end %>
+    </div>
+
+    <div class="post-user-edit2">
+        <div class="post-like">
+        <% if current_user.id != @post.user_id %>
+            <% if current_user.already_liked?(@post) %>
+                <%= button_to 'いいね取消', post_like_path(@post), method: :delete, class:"edit-button e3" %>
+            <% else %>
+                <%= button_to 'いいね', post_likes_path(@post), class:"edit-button e3" %>
+            <% end %>
+        </div>
+        <% end %>
+        
+
+    <br>
+        <% if current_user.id != @post.user_id %>   
+            <% if current_user.already_participated?(@post) %>
+                <%= button_to '参加取消', post_participant_path(@post), method: :delete, class:"edit-button e2 e3" %>
+            <% else %>
+                <%= button_to '参加', post_participants_path(@post), class:"edit-button e2 e3" %>
+            <% end %>
+        <% end %>
+    </div>
+</div>
+</div>
+    <div class="post-body">
+    <div class="postshow1">開催日時</div>　<div class="postshow"><%= @post.date %></div>
+    <div class="postshow1">開催場所</div>　<div class="postshow"><%= @post.location %></div>
+    <div class="postshow1">募集対象</div>　<div class="postshow"><%= @post.remarks %></div>
+    <div class="postshow1">詳細説明</div>　<br><div class="postshow"><%= simple_format(@post.explanation) %></div>
+    <div class="postshow1">現在の参加人数／募集人数</div> <br>   <div class="postshow"><%= @post.participants.count %>／ <%= @post.capacity %>人</div>
+    
+
+</div>
+
+<div class="postshow2">現在の参加者</div>
+    <% @post.participated_users.each do |user| %>
+    <div class="participant-delete">
+        <div class="participatist"><li><a class="post-user" href="/users/<%= user.id %>"><%= user.name%>さん</a></li></div>
+        <% if current_user.id == @post.user_id %>
+            <%= button_to '取消', post_participant_path(@post.id,user.id), method: :delete,class:"delete-button" %>
+        <% end %>
+    </div>
+    <% end %>
+</div>
+
+<script>
+function btnalert() {
+    window.alert('消去しますか？');
+}
+</script>

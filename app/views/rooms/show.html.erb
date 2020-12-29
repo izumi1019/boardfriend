@@ -1,0 +1,54 @@
+<div class="room-name">
+<% @entries.each do |e| %>
+<h5><strong><a href="/users/<%= e.user.id %>" class="room-name1"><%= e.user.name %>さん</a></strong></h5>
+  <% end %>
+</div>
+<div class="room-message">
+    <a href="#scroll-bottom" id="scroll-btn"></a>
+    <div id="scroll-inner">
+        <% @messages.each do |m| %>
+            <% if m.user_id == current_user.id %>
+              <div class="current_user">
+                <div class="name-time">
+                  <strong class="current_user2"><%= simple_format(m.content) %></strong>
+                  <small class="room-time1"><%= m.created_at.in_time_zone('Tokyo') %></small>
+                </div>
+              </div>
+          <% else %>
+              <div class="visited_user">
+              <div class="name-time2">
+                  <small class="visited_user1"><%= m.user.name %>さん<small class="room-time2"><%= m.created_at.in_time_zone('Tokyo') %></small></small>
+                  
+              </div>
+                  <div class="visited-user-img">
+                  <% if m.user._url == nil %>
+                    <i class="fas fa-question room-img"></i>
+                  <% else %>
+                    <%= image_tag m.user.image_url,class: "visited-img" %>
+                  <% end %>
+                  </div>
+                  <strong class="visited_user2"><%= simple_format(m.content) %></strong>
+              </div>
+          <% end %>
+        <% end %>
+        <p id="scroll-bottom"></p>
+      </div>
+</div>
+
+<div class="messageform">
+<%= form_for @message do |f| %>
+  <%= f.text_area :content, :placeholder => "メッセージを入力して下さい" ,size: "70×100" , class:"messageform1" %>
+  <%= f.hidden_field :room_id, :value => @room.id %>
+  
+  <%= f.submit "送信" ,class: "room-submit" %>
+<% end %>
+
+</div>
+
+<script type="text/javascript">
+window.onload = function() {
+  var bm = document.getElementById('scroll-btn');
+  bm.click();
+  return false;
+}
+</script>
